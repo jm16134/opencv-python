@@ -20,10 +20,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest]
-        python-version: ['3.6', '3.7', '3.8', '3.9', '3.10']
-        platform: [x86, x64]
-        with_contrib: [0, 1]
-        without_gui: [0, 1]
+        python-version: ['3.8']
+        platform: [x64]
+        with_contrib: [0]
+        without_gui: [0]
         build_sdist: [0]
 
     env:
@@ -61,6 +61,10 @@ jobs:
         set "CI_BUILD=1" && python -m pip wheel --wheel-dir=%cd%\wheelhouse . --verbose
       shell: cmd
 
+    - name: Zip output
+      run: |
+        zip skbuild _skbuild
+
     - name: before test
       run: |
         git submodule update --init --recursive
@@ -79,5 +83,5 @@ jobs:
     - name: saving artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: wheels
-        path: wheelhouse/opencv*.whl
+        name: skbuild
+        path: skbuild.zip
