@@ -61,10 +61,6 @@ jobs:
         set "CI_BUILD=1" && python -m pip wheel --wheel-dir=%cd%\wheelhouse . --verbose
       shell: cmd
 
-    - name: Zip output
-      run: |
-        zip skbuild _skbuild
-
     - name: before test
       run: |
         git submodule update --init --recursive
@@ -84,4 +80,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: skbuild
-        path: skbuild.zip
+        path: _skbuild
