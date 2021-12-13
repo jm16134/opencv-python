@@ -23,7 +23,7 @@ jobs:
         python-version: ['3.8']
         platform: [x64]
         with_contrib: [0]
-        without_gui: [0]
+        without_gui: [1]
         build_sdist: [0]
 
     env:
